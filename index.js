@@ -19,6 +19,7 @@ socketIO.on("connection", (socket) => {
 
   //sends the message to all the users on the server
   socket.on("message", (data) => {
+    console.log(data);
     socketIO.emit("messageResponse", data);
   });
 
