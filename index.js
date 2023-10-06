@@ -17,6 +17,11 @@ let users = [];
 socketIO.on("connection", (socket) => {
   console.log(`⚡: ${socket.id} user just connected!`);
 
+  socket.on("user-login", ({ user }) => {
+    socket.user = user;
+    console.log(user);
+  });
+
   //sends the message to all the users on the server
   socket.on("message", (data) => {
     console.log(data);
@@ -24,7 +29,7 @@ socketIO.on("connection", (socket) => {
   });
 
   // listens to user typing
-  socket.on('typing', (data) => socket.broadcast.emit('typingResponse', data));
+  socket.on("typing", (data) => socket.broadcast.emit("typingResponse", data));
 
   //Listens when a new user joins the server
   socket.on("newUser", (data) => {
@@ -51,7 +56,7 @@ app.get("/api", (req, res) => {
     message: "Hello world",
   });
 });
-
-app.listen(PORT, () => {
+// app listen
+http.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 });
