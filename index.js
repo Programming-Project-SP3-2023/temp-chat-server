@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const PORT = 4000;
+const PORT = 4001;
 
 // Imports
 const http = require("http").Server(app);
